@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bank.Repository.AccountRepo;
 import com.bank.entities.Account;
-
+//Account
 @Service
 public class AccountServiceImpl {
 	@Autowired
