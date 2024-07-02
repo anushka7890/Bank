@@ -4,12 +4,13 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Transaction {
-
+    @Id
 	private int transId;
 	private int accId;
 	private String type;
@@ -18,6 +19,7 @@ public class Transaction {
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="accId")
 	private Account account;
+	
 	public int getTransId() {
 		return transId;
 	}
