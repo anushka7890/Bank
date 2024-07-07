@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -12,17 +15,18 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
+
 public class Account {
 	@Id
+	
 	private int accId;
-	private int custId;
 	private String type;
 	private long balance;
-
+	@JsonBackReference
 	@ManyToOne(cascade = jakarta.persistence.CascadeType.ALL)
 	@JoinColumn(name = "custId")
 	private Customer customer;
-	@OneToMany(mappedBy = "Account", cascade = jakarta.persistence.CascadeType.ALL)
+	@OneToMany(mappedBy = "account", cascade = jakarta.persistence.CascadeType.ALL)
 	private List<Transaction> transList = new ArrayList<>();
 
 	public int getAccId() {
@@ -31,14 +35,6 @@ public class Account {
 
 	public void setAccId(int accId) {
 		this.accId = accId;
-	}
-
-	public int getCustId() {
-		return custId;
-	}
-
-	public void setCustId(int custId) {
-		this.custId = custId;
 	}
 
 	public String getType() {
@@ -65,28 +61,18 @@ public class Account {
 		this.customer = customer;
 	}
 
-	public List<Transaction> getTransList() {
-		return transList;
-	}
-
-	public void setTransList(List<Transaction> transList) {
-		this.transList = transList;
-	}
-
 	@Override
 	public String toString() {
-		return "Account [accId=" + accId + ", custId=" + custId + ", type=" + type + ", balance=" + balance
-				+ ", customer=" + customer + ", transList=" + transList + "]";
+		return "Account [accId=" + accId + ", type=" + type + ", balance=" + balance + ", customer=" + customer
+				+ " ]";
 	}
 
-	public Account(int accId, int custId, String type, long balance, Customer customer, List<Transaction> transList) {
+	public Account(int accId, String type, long balance, Customer customer) {
 		super();
 		this.accId = accId;
-		this.custId = custId;
 		this.type = type;
 		this.balance = balance;
 		this.customer = customer;
-		this.transList = transList;
 	}
 
 	public Account() {

@@ -10,10 +10,11 @@ import com.bank.entities.Transaction;
 
 @RestController
 public class TransactionController {
-@Autowired
-private TransactionServiceImpl transactionServiceImpl;
-@PostMapping("/Transaction/create")
- public Transaction transactionCreate(@RequestBody Transaction transaction) {
-	return   transactionServiceImpl.createTransaction(transaction);
-}
+	@Autowired
+	private TransactionServiceImpl transactionServiceImpl;
+
+	@PostMapping("/transaction/create")
+	public Transaction transactionCreate(@RequestBody Transaction transaction) {
+		return transactionServiceImpl.createTransaction(transaction);
+	}
 }
