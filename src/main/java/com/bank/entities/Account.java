@@ -18,7 +18,6 @@ import jakarta.persistence.OneToMany;
 
 public class Account {
 	@Id
-	
 	private int accId;
 	private String type;
 	private long balance;

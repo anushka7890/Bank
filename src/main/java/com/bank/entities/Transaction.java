@@ -13,7 +13,7 @@ public class Transaction {
 	@Id
 	private int transId;
 	private String type;
-	private int amount;
+	private long amount;
 	private LocalDateTime timeStamp;
 
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -36,11 +36,11 @@ public class Transaction {
 		this.type = type;
 	}
 
-	public int getAmount() {
+	public long getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(long amount) {
 		this.amount = amount;
 	}
 
@@ -66,7 +66,7 @@ public class Transaction {
 				+ ", account=" + account + "]";
 	}
 
-	public Transaction(int transId, String type, int amount, LocalDateTime timeStamp, Account account) {
+	public Transaction(int transId, String type, long amount, LocalDateTime timeStamp, Account account) {
 		super();
 		this.transId = transId;
 		this.type = type;

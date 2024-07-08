@@ -7,13 +7,20 @@ import org.springframework.stereotype.Service;
 
 import com.bank.Repository.AccountRepo;
 import com.bank.entities.Account;
+import com.bank.entities.Transaction;
 
 //Account
 @Service
 public class AccountServiceImpl {
 	@Autowired
 	private AccountRepo accountRepo;
-
+	
+	 @Autowired 
+	 private Transaction transaction;
+	 @Autowired 
+	 private Account account;
+	long newBalance = account.getBalance()-(transaction.getAmount());
+    account.setBalance(newBalance);    
 	public Account createAccount(Account account) {
 		if (account.getType().equalsIgnoreCase("Saving") && account.getBalance() >= 2000) {
 			return accountRepo.save(account);

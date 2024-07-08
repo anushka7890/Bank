@@ -25,7 +25,6 @@ public class AccountController {
 	public Account createAccount(@RequestBody Account account) {
 
 		return aacountServiceImpl.createAccount(account);
-
 	}
 
 	@GetMapping("account/get/{id}")
